@@ -1,0 +1,158 @@
+dashboard.css
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Inter', sans-serif;
+  }
+  
+  .dashboard-container {
+    display: flex;
+    min-height: 100vh;
+    background-color: #f5f5f5;
+  }
+  
+
+  .sidebar {
+    width: 250px;
+    background-color: #fff;
+    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+  }
+  
+  .sidebar-header {
+    padding: 10px 0;
+    margin-bottom: 30px;
+    border-bottom: 1px solid #eee;
+  }
+  
+  .sidebar-header h2 {
+    font-size: 20px;
+    font-weight: 600;
+    color: #333;
+  }
+  
+  .menu-section {
+    margin-bottom: 25px;
+  }
+  
+  .menu-section h3 {
+    font-size: 14px;
+    font-weight: 600;
+    color: #666;
+    margin-bottom: 10px;
+  }
+  
+  .menu-item {
+    display: block;
+    padding: 8px 0;
+    color: #333;
+    text-decoration: none;
+    font-size: 14px;
+    transition: color 0.2s;
+  }
+  
+  .menu-item:hover {
+    color: #4a0082;
+  }
+  
+  .main-content {
+    flex: 1;
+    padding: 30px;
+  }
+  
+  .content-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 30px;
+
+  }
+  
+  .content-header h1 {
+    font-size: 24px;
+    font-weight: 600;
+    color: #333;
+  }
+  
+  .search-bar input {
+    padding: 10px 15px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    width: 250px;
+    font-size: 14px;
+  }
+  
+  .candidates-table {
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+    overflow: hidden;
+  }
+  
+  table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+  
+  th, td {
+    padding: 15px;
+    text-align: left;
+    border-bottom: 1px solid #eee;
+    font-size: 14px;
+    
+  }
+  
+  th {
+    background-color: #4D007D;
+    font-weight: 600;
+    color: white;
+
+  }
+  
+  tr:hover {
+    background-color: #f5f5f5;
+  }
+  
+  .action-btn {
+    background: none;
+    border: none;
+    color: #4a0082;
+    cursor: pointer;
+    font-weight: 500;
+    padding: 5px 10px;
+  }
+  
+  .action-btn:hover {
+    text-decoration: underline;
+  }
+  
+
+  @media (max-width: 768px) {
+    .dashboard-container {
+      flex-direction: column;
+    }
+    
+    .sidebar {
+      width: 100%;
+    }
+    
+    .content-header {
+      flex-direction: column;
+      align-items: flex-start;
+    }
+    
+    .search-bar {
+      margin-top: 15px;
+      width: 100%;
+    }
+    
+    .search-bar input {
+      width: 100%;
+    }
+    
+    table {
+      display: block;
+      overflow-x: auto;
+    }
+  }
