@@ -4,11 +4,14 @@ import Calendar from 'react-calendar';
 import AddLeaveModal from './AddLeave';
 import './leaves.css';
 import 'react-calendar/dist/Calendar.css';
+import CommonHeader from '../../common/CommonHeader';
 
 const LeaveManager = () => {
   const [date, setDate] = useState(new Date(2024, 8, 8)); // September 8, 2024
   const [searchQuery, setSearchQuery] = useState('');
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [statusFilter, setStatusFilter] = useState("Status");
+  
   
   // Dummy data for the leaves table
   const [leaveData, setLeaveData] = useState([
@@ -119,23 +122,23 @@ const LeaveManager = () => {
 
   return (
     <div className="leave-management-container">
-      <div className="header">
-        <div className="header-icons">
-          <span className="icon">🔔</span>
-          <span className="icon">⚠️</span>
-        </div>
-      </div>
+      <CommonHeader screenName={"Leaves"} />
 
       <div className="controls">
-        <div className="filter-dropdown">
-          <select className="filter-select">
-            <option>Filter</option>
+        <div className="attendance-status">
+          <select 
+            value={statusFilter} 
+            onChange={(e) => setStatusFilter(e.target.value)}
+            className="status-select"
+          >
+            <option value="Status">Status</option>
+            <option value="Present">Approved</option>
+            <option value="Absent">Pending</option>
           </select>
         </div>
         
-        <div className="search-container">
-          <div className="search-input">
-            <span className="search-icon">🔍</span>
+        <div className='elements_flex'>
+          <div className="search-box-candidates">
             <input
               type="search"
               placeholder="Search"
@@ -143,9 +146,8 @@ const LeaveManager = () => {
               onChange={handleSearch}
             />
           </div>
+        <button className="add-button" onClick={openModal}>Add Leave</button>
         </div>
-        
-        <button className="add-leave-btn" onClick={openModal}>Add Leave</button>
       </div>
 
       <div className="main-content">

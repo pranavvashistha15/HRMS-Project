@@ -46,20 +46,22 @@
 }
 
 .attendance-status {
-  position: relative;
-  width: 182px;
+  display: flex;
+  align-items: center;
 }
 
 .status-select {
-  width: 100%;
-  height: 38px;
-  padding: 8px 16px;
-  border-radius: 45px;
-  border: 1px solid #a4a4a4;
+  padding: 8px 15px;
+  border: 1px solid #ccc;
+  border-radius: 999px;
   background-color: white;
-  font-family: "Nunito-Regular", sans-serif;
-  font-size: 16px;
-  appearance: none;
+  font-size: 14px;
+  appearance: none; /* Removes default browser styling */
+  background-image: url('data:image/svg+xml;utf8,<svg fill="black" height="16" viewBox="0 0 24 24" width="16" xmlns="http://www.w3.org/2000/svg"><path d="M7 10l5 5 5-5z"/></svg>');
+  background-repeat: no-repeat;
+  background-position: right 12px center;
+  background-size: 16px;
+  padding-right: 35px; /* Space for the icon */
   cursor: pointer;
 }
 
