@@ -177,7 +177,7 @@
 // };
 
 // export default App;
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { BrowserRouter as Router, Routes, Route, Navigate } from "react-router-dom";
 import Sidebar from "./components/common/Sidebar";
 import "./App.css";
@@ -195,6 +195,13 @@ const App = () => {
   const [showLogoutPopup, setShowLogoutPopup] = useState(false);
 
   const handleLogin = () => {
+    const token = localStorage.getItem("token");
+    if (!token) {
+      console.error("No token found, redirecting to login.");
+      return <Navigate to="/login" />;
+    }else {
+      console.log("Token found, setting authentication state.");
+    }
     setIsAuthenticated(true);
   };
 
@@ -203,6 +210,15 @@ const App = () => {
     setShowLogoutPopup(false);
     return <Navigate to="/login" />;
   };
+
+  useEffect(() => {
+    const token = localStorage.getItem("token");
+    if (token) {
+      setIsAuthenticated(true);
+    } else {
+      setIsAuthenticated(false);
+    }
+  }, []);
 
   const renderComponent = () => {
     switch (activeTab) {
