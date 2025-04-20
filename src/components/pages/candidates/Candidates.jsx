@@ -522,58 +522,80 @@
 // export default Candidates;
 
 
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "./Candidates.css"; // Make sure to include your CSS file
 import CommonHeader from "../../common/CommonHeader";
+import axios from "axios";
 
 const Candidates = () => {
-  const [candidates, setCandidates] = useState([
-    {
-      id: 1,
-      name: "Jane Copper",
-      email: "jane.copper@example.com",
-      phone: "(704) 555-0127",
-      position: "Designer Intern",
-      status: "New",
-      experience: 0,
-    },
-    {
-      id: 2,
-      name: "Jacob William",
-      email: "jacob.william@example.com",
-      phone: "(252) 555-0111",
-      position: "Senior Developer",
-      status: "New",
-      experience: "1+",
-    },
-    {
-      id: 3,
-      name: "Guy Hawkins",
-      email: "kenzi.lawson@example.com",
-      phone: "(907) 555-0101",
-      position: "Human Resource Lead",
-      status: "New",
-      experience: "3+",
-    },
-    {
-      id: 4,
-      name: "Arlene McCoy",
-      email: "arlene.mccoy@example.com",
-      phone: "(302) 555-0107",
-      position: "Full Time Designer",
-      status: "Selected",
-      experience: "2+",
-    },
-    {
-      id: 5,
-      name: "Leslie Alexander",
-      email: "willie.jennings@example.com",
-      phone: "(207) 555-0119",
-      position: "Full Time Developer",
-      status: "Rejected",
-      experience: 0,
-    },
-  ]);
+  // const [candidates, setCandidates] = useState([
+  //   {
+  //     id: 1,
+  //     name: "Jane Copper",
+  //     email: "jane.copper@example.com",
+  //     phone: "(704) 555-0127",
+  //     position: "Designer Intern",
+  //     status: "New",
+  //     experience: 0,
+  //   },
+  //   {
+  //     id: 2,
+  //     name: "Jacob William",
+  //     email: "jacob.william@example.com",
+  //     phone: "(252) 555-0111",
+  //     position: "Senior Developer",
+  //     status: "New",
+  //     experience: "1+",
+  //   },
+  //   {
+  //     id: 3,
+  //     name: "Guy Hawkins",
+  //     email: "kenzi.lawson@example.com",
+  //     phone: "(907) 555-0101",
+  //     position: "Human Resource Lead",
+  //     status: "New",
+  //     experience: "3+",
+  //   },
+  //   {
+  //     id: 4,
+  //     name: "Arlene McCoy",
+  //     email: "arlene.mccoy@example.com",
+  //     phone: "(302) 555-0107",
+  //     position: "Full Time Designer",
+  //     status: "Selected",
+  //     experience: "2+",
+  //   },
+  //   {
+  //     id: 5,
+  //     name: "Leslie Alexander",
+  //     email: "willie.jennings@example.com",
+  //     phone: "(207) 555-0119",
+  //     position: "Full Time Developer",
+  //     status: "Rejected",
+  //     experience: 0,
+  //   },
+  // ]);
+
+  const [candidates, setCandidates] = useState([]);
+
+  const fetchCandidateData = async () => {
+    try {
+      const baseUrl = import.meta.env.VITE_API_BASE_URL
+      const token = localStorage.getItem("token");
+      const response = await axios.get(`${baseUrl}/candidate`, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+      setCandidates(response.data.data);
+    } catch (error) {
+      console.error("Error fetching attendance data:", error);
+    }
+  };
+  
+  useEffect(() => {
+    fetchCandidateData();
+  }, []);
 
   const [statusOpen, setStatusOpen] = useState(false);
   const [positionOpen, setPositionOpen] = useState(false);
@@ -833,7 +855,7 @@ const Candidates = () => {
                   <td>{c.phone}</td>
                   <td>{c.position}</td>
                   <td>
-                    <div className={`status-pill ${c.status.toLowerCase()}`}>
+                    <div className={`status-pill ${c?.status?.toLowerCase()}`}>
                       <select defaultValue={c.status}>
                         <option value="New">New</option>
                         <option value="Selected">Selected</option>
@@ -853,7 +875,7 @@ const Candidates = () => {
                       {actionMenuOpen === c.id && (
                         <div className="action-menu">
                           <ul>
-                            <li>Download Resume</li>
+                            <li><a href={c.resume} target="_blank" download={true}>Download Resume</a></li>
                             <li>Delete Candidate</li>
                           </ul>
                         </div>

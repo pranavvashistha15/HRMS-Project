@@ -116,7 +116,7 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import './Auth.css';
-import onboardingImage from "../../../../assets/image1.png";
+import onboardingImage from "../../../assets/image1.png";
 
 const Register = () => {
   const [formData, setFormData] = useState({

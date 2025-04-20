@@ -249,7 +249,8 @@ const Attendance = () => {
           </tr>
         </thead>
         <tbody>
-          {filteredAttendance.map((emp, index) => (
+          {/* {filteredAttendance.map((emp, index) => ( */}
+          {attendanceData.map((emp, index) => (
             <tr key={index}>
               <td>
                 <img src={emp.image} alt={emp.name} className="avatar" />
@@ -264,9 +265,9 @@ const Attendance = () => {
                 {emp.position}
               </td>
               <td>{emp.department}</td>
-              <td>{emp.doj}</td>
-              <td className={`status-cell ${emp.status.toLowerCase()}`}>
-                {emp.status}
+              <td>{emp.joiningDate}</td>
+              <td className={`status-cell ${emp?.status?.toLowerCase()}`}>
+                {emp.status || "Present"}
               </td>
               <td>
                 <FiMoreVertical />
