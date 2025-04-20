@@ -11,6 +11,24 @@ const AddLeaveModal = ({ isOpen, onClose, onSave }) => {
     documents: null
   });
 
+  const UploadIcon = () => (
+    <svg 
+      width="20" 
+      height="20" 
+      viewBox="0 0 24 24" 
+      fill="none" 
+      stroke="currentColor" 
+      strokeWidth="2" 
+      strokeLinecap="round" 
+      strokeLinejoin="round"
+      className="upload-icon"
+    >
+      <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+      <polyline points="17 8 12 3 7 8"></polyline>
+      <line x1="12" y1="3" x2="12" y2="15"></line>
+    </svg>
+  );
+
 
   const handleChange = (e) => {
     const { name, value, files } = e.target;
@@ -27,10 +45,10 @@ const AddLeaveModal = ({ isOpen, onClose, onSave }) => {
       });
     }
   };
-
+  
   const handleSubmit = (e) => {
+    console.log(formData)
     e.preventDefault();
-  console.log(formData)
     
     onSave(formData);
     setFormData({
@@ -55,16 +73,14 @@ const AddLeaveModal = ({ isOpen, onClose, onSave }) => {
         <form onSubmit={handleSubmit}>
           <div className="form-row">
             <div className="form-group">
-              <div className="input-with-icon">
-                <span className="search-icon">🔍</span>
-                <input
-                  type="text"
-                  name="employeeName"
-                  placeholder="Search Employee Name"
-                  value={formData.employeeName}
-                  onChange={handleChange}
-                />
-              </div>
+              <input
+                type="text"
+                name="employeeName"
+                placeholder="Employee Name*"
+                value={formData.employeeName}
+                onChange={handleChange}
+                required
+              />
             </div>
             <div className="form-group">
               <input
@@ -80,7 +96,6 @@ const AddLeaveModal = ({ isOpen, onClose, onSave }) => {
 
           <div className="form-row">
             <div className="form-group">
-                <div className="input-with-icon date-input">
                 <input
                     type="date"
                     name="leaveDate"
@@ -88,23 +103,44 @@ const AddLeaveModal = ({ isOpen, onClose, onSave }) => {
                     value={formData.leaveDate}
                     onChange={handleChange}
                     required
-                />
-                <span className="calendar-icon">📅</span>
-                </div>
+                />  
             </div>
 
             <div className="form-group">
-                <div className="input-with-icon document-input">
+              <div className="file-input">
                 <input
-                    type="file"
-                    name="documents"
-                    onChange={handleChange}
+                  type="file"
+                  name="documents"
+                  onChange={handleChange}
+                  required
+                  className="hidden-file-input"
                 />
-                <span className="upload-icon">⬆️</span>
+                <div className="file-input-label">
+                  <span>{formData.documents ? formData.documents.name : "Insert documents"}</span>
+                  <UploadIcon />
                 </div>
-            </div>
+                </div>
+              </div>
             </div>
 
+
+
+
+            {/* <div className="file-input">
+              <input
+                type="file"
+                id="resume"
+                name="resume"
+                onChange={handleChange}
+                required
+                className="hidden-file-input"
+              />
+              <div className="file-input-label">
+                <span>{formData.documents ? formData.documents.name : ""}</span>
+                <UploadIcon />
+              </div>
+              </div>
+            </div> */}
 
           <div className="form-row">
             <div className="form-group full-width">

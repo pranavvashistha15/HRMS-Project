@@ -187,7 +187,7 @@ import Candidates from "./components/pages/candidates/Candidates";
 import Employees from "./components/pages/employees/Employees";
 import Attendance from "./components/pages/attendance/Attendance";
 import Leaves from "./components/pages/leaves/Leaves";
-import LogoutPopup from "./components/pages/logout/LogoutPopup";
+import LogoutPopup from "./components/pages/logout/logoutPopup";
 
 const App = () => {
   const [isAuthenticated, setIsAuthenticated] = useState(false);

@@ -96,7 +96,7 @@
 
 import React, { useState, useEffect } from "react";
 import "./Attendance.css";
-import { FiMoreVertical } from "react-icons/fi";
+import { FiMoreVertical, FiSearch } from "react-icons/fi";
 import CommonHeader from "../../common/CommonHeader";
 import axios from "axios";
 
@@ -207,8 +207,7 @@ const Attendance = () => {
       
       {/* Status and Search Component */}
       <div className="status-search-container">
-        <div className="attendance-status">
-          <div className="status-dropdown">
+          <div className="attendance-status">
             <select 
               value={statusFilter} 
               onChange={(e) => setStatusFilter(e.target.value)}
@@ -219,18 +218,14 @@ const Attendance = () => {
               <option value="Absent">Absent</option>
             </select>
           </div>
-        </div>
         
-        <div className="search-box">
+        <div className="search-box-candidates">
+          <FiSearch />
           <input
-            type="text"
             placeholder="Search"
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
-            className="search-input"
           />
-          <span className="search-icon">🔍</span>
-          
         </div>
       </div>
 

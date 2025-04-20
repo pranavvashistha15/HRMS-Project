@@ -526,6 +526,7 @@ import React, { useState, useEffect } from "react";
 import "./Candidates.css"; // Make sure to include your CSS file
 import CommonHeader from "../../common/CommonHeader";
 import axios from "axios";
+import { FiSearch } from "react-icons/fi";
 
 const Candidates = () => {
   // const [candidates, setCandidates] = useState([
@@ -778,59 +779,60 @@ const Candidates = () => {
         {/* Candidate Filter Section */}
         <div className="candidate-filter">
           {/* Status Dropdown */}
-          <div className="filter-dropdown">
-            <button onClick={toggleStatus} className="filter-button">
-              <span>Status</span>
-              <ChevronDown />
-            </button>
-            {statusOpen && (
-              <div className="dropdown-menu">
-                <ul>
-                  <li>All Status</li>
-                  <li>New</li>
-                  <li>Selected</li>
-                  <li>Rejected</li>
-                </ul>
-              </div>
-            )}
-          </div>
+          <div className="elements_flex">
+            <div className="filter-dropdown">
+              <button onClick={toggleStatus} className="filter-button">
+                <span>Status</span>
+                <ChevronDown />
+              </button>
+              {statusOpen && (
+                <div className="dropdown-menu">
+                  <ul>
+                    <li>All Status</li>
+                    <li>New</li>
+                    <li>Selected</li>
+                    <li>Rejected</li>
+                  </ul>
+                </div>
+              )}
+            </div>
 
-          {/* Position Dropdown */}
-          <div className="filter-dropdown">
-            <button onClick={togglePosition} className="filter-button">
-              <span>Position</span>
-              <ChevronDown />
-            </button>
-            {positionOpen && (
-              <div className="dropdown-menu">
-                <ul>
-                  <li>All Positions</li>
-                  <li>Designer</li>
-                  <li>Developer</li>
-                  <li>Human Resource</li>
-                </ul>
-              </div>
-            )}
+            {/* Position Dropdown */}
+            <div className="filter-dropdown">
+              <button onClick={togglePosition} className="filter-button">
+                <span>Position</span>
+                <ChevronDown />
+              </button>
+              {positionOpen && (
+                <div className="dropdown-menu">
+                  <ul>
+                    <li>All Positions</li>
+                    <li>Designer</li>
+                    <li>Developer</li>
+                    <li>Human Resource</li>
+                  </ul>
+                </div>
+              )}
+            </div>
           </div>
-
-          {/* Search Box with improved spacing */}
-          <div className="search-container" style={{ marginLeft: '20px', marginRight: '20px' }}>
-            <div className="search-box">
-              <SearchIcon />
+          {/* Search Box */}
+          <div className="elements_flex">
+            <div className="search-box-candidates">
+              <FiSearch />
               <input
-                type="text"
                 placeholder="Search"
                 value={searchValue}
                 onChange={(e) => setSearchValue(e.target.value)}
               />
             </div>
-          </div>
 
-          {/* Add Candidate Button */}
-          <button className="add-button" onClick={() => setShowModal(true)}>
-            Add Candidate
-          </button>
+            {/* Add Candidate Button */}
+            <button className="add-button" onClick={() => setShowModal(true)}>
+              Add Candidate
+            </button>
+          </div>
         </div>
+
 
         {/* Candidates Table */}
         <div className="table-container">
