@@ -649,11 +649,9 @@ const Employees = () => {
         </div>
 
         {/* Search Bar */}
-        <div className="search-container">
-          <FiSearch className="search-icon" />
+        <div className="search-box-candidates">
+          <FiSearch />
           <input
-            type="text"
-            className="search-input"
             placeholder="Search"
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}

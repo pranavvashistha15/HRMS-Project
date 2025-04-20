@@ -105,6 +105,7 @@
   
   .form-group {
     margin-bottom: 16px;
+    width: 100%;
   }
   
   .form-group label {
