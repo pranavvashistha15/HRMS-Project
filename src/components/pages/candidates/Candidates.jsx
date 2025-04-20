@@ -653,6 +653,7 @@ const Candidates = () => {
     
     // Add to candidates array
     setCandidates([...candidates, candidate]);
+
     
     // Reset form and close modal
     setNewCandidate({
@@ -989,17 +990,21 @@ const Candidates = () => {
                   <label htmlFor="agree">I hereby declare that the above information is true to the best of my knowledge and belief</label>
                 </div>
                 <div className="form-actions">
-                  <button 
-                    type="submit" 
-                    className={newCandidate.agree ? "save-button active" : "save-button disabled"}
-                    disabled={!newCandidate.agree}
-                    style={{
-                      backgroundColor: newCandidate.agree ? "#3f0071" : "#ccc",
-                      cursor: newCandidate.agree ? "pointer" : "not-allowed"
-                    }}
-                  >
-                    Save
-                  </button>
+                <button 
+                  type="submit" 
+                  className={newCandidate.agree ? "save-button active" : "save-button disabled"}
+                  disabled={!newCandidate.agree}
+                  style={{
+                    backgroundColor: newCandidate.agree ? "#3f0071" : "#ccc",
+                    cursor: newCandidate.agree ? "pointer" : "not-allowed",
+                    color: "white", // moved here from "text:white"
+                    padding: "10px 20px", // optional additional styling
+                    border: "none" // optional
+                  }}
+                >
+                  Save
+                </button>
+
                 </div>
               </form>
             </div>
