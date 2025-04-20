@@ -94,6 +94,9 @@
     width: 100%;
     max-width: 400px;
     padding: 0 60px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
   }
   
   .form-container h2 {
@@ -119,7 +122,7 @@
   }
   
   .form-group input {
-    width: 100%;
+    width: 300px;
     padding: 16px;
     border: 1px solid #e5e5e5;
     border-radius: 8px;
@@ -140,7 +143,8 @@
   
   .toggle-password {
     position: absolute;
-    right: 16px;
+    /* right: 16px; */
+    left: 270px;
     top: 50%;
     transform: translateY(-50%);
     background: none;
@@ -150,22 +154,22 @@
   }
   
   .forgot-password {
-    text-align: right;
+    text-align: left;
     margin: -8px 0 16px;
   }
   
   .forgot-password button {
     background: none;
     border: none;
-    color: #4d007d;
+    color: #a4a4a4;
     font-size: 14px;
     cursor: pointer;
     padding: 0;
   }
   
   .auth-button {
-    width: 100%;
-    padding: 12px;
+    width: 40%;
+    padding: 8px;
     background: #4d007d;
     color: white;
     border: none;
@@ -183,7 +187,7 @@
   }
   
   .auth-switch {
-    text-align: center;
+    text-align: left;
     margin-top: 16px;
     color: #a4a4a4;
     font-size: 14px;
@@ -202,9 +206,9 @@
   .auth-logo {
     display: flex;
     align-items: center;
-    gap: 8px;
+    gap: 10px;
     position: absolute;
-    top: 76px;
+    top: 20px;
     left: 50%;
     transform: translateX(-50%);
   }
