@@ -132,12 +132,51 @@ const Register = () => {
     setFormData(prev => ({ ...prev, [name]: value }));
   };
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    console.log('Registration data:', formData);
-    // After successful registration
+  // const handleSubmit = (e) => {
+  //   e.preventDefault();
+  //   console.log('Registration data:', formData);
+
+  //   // After successful registration
+  //   navigate('/login');
+  // };
+
+  const baseUrl = import.meta.env.VITE_API_BASE_URL;
+
+const handleSubmit = async (e) => {
+  e.preventDefault();
+
+  if (formData.password !== formData.confirmPassword) {
+    alert('Passwords do not match!');
+    return;
+  }
+
+  try {
+    const response = await fetch(`${baseUrl}/auth/register`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        name: formData.fullName,
+        email: formData.email,
+        password: formData.password,
+      }),
+    });
+
+    if (!response.ok) {
+      throw new Error('Registration failed');
+    }
+
+    const data = await response.json();
+    console.log('Registration successful:', data);
+
+    // Navigate to login page after successful registration
     navigate('/login');
-  };
+  } catch (error) {
+    console.error('Error during registration:', error);
+    alert('Registration failed. Please try again.');
+  }
+};
 
   return (
     <div className="auth-container">
